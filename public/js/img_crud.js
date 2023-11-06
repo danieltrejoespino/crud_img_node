@@ -22,6 +22,6 @@ btn_image.addEventListener('click', function () {
       console.error('Error al subir la imagen:', error);
     });
   }else{
-    show_alert(2,'Agrega una foto para continuar')
+    show_alert(2,'Agrega una imagen para continuar')
   }
 });
