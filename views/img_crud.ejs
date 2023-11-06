@@ -2,12 +2,13 @@
 <%- include("template/navbar") %>
 
 <div class="row">
-    <h2>Selecciona una accion</h2>
+  <div class="col-lg-6">
+    <label for="formFileLg" class="form-label">Selecciona una imagen a cargar</label>
+    <input class="form-control form-control-lg" id="formFileLg" type="file">
+
+    <button id="btn_image" class="btn btn-success mt-3">Cargar imagen</button>
+  </div>
 </div>
 
-<div>
-  <label for="formFileLg" class="form-label">Selecciona una imagen a cargar</label>
-  <input class="form-control form-control-lg" id="formFileLg" type="file">
-</div>
-
+<script src="./js/img_crud.js"></script>
 <%- include("template/footer") %>

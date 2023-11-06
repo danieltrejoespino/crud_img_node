@@ -1,6 +1,11 @@
+function show_alert(tipo,texto) {
+  let icon = tipo === 1 ? 'success' : 'error'
 
-// const prueba=document.querySelector('#prueba')
-// prueba.addEventListener('click', function () {
-//     console.log('hola mundo');
-//     alert(`Pruebas`)
-// });
+  Swal.fire({
+    position: "center",
+    icon: icon,
+    title: texto,
+    showConfirmButton: false,
+    timer: 1500
+  });
+}
