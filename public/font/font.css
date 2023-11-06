@@ -1,0 +1,7 @@
+
+@font-face {
+font-family: "Bitstream Vera Serif Bold";
+src: url("/roboto/Roboto-Thin.ttf");
+}
+
+body { font-family: "Bitstream Vera Serif Bold", serif }
