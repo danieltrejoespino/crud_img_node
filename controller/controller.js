@@ -11,4 +11,9 @@ const test={
     res.render("404",{titulo:"hola nahum"})
   }
 }
-module.exports={test}
+const img_crud={
+    home:function (req,res) {
+        res.render("img_crud")
+    },
+}
+module.exports={test,img_crud}
