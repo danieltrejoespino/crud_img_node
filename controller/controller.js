@@ -1,3 +1,4 @@
+const fs = require('fs');
 
 const home={ 
   home:function (req,res) {
@@ -22,20 +23,8 @@ const home={
     res.render("d-ecrypt",{parametros:objetoParametros})
   },
 }
-const upload_all={
-  upload_img:function(req,res){    
-      let name= 'prueba'
-      // let name= req.query.name
-      console.log(`url: ${req.url} | Method: ${req.method} | Status:${res.statusCode}`);
-      if (req.file) {      
-        console.log(`imagen ${name} subida con exito`);
-        res.json(`imagen ${name} subida con exito`)
-      } else {      
-        console.log(`Error al subir la imagen ${name}`);
-        res.status(400).json(`Error al subir la imagen: ${name}`);
-      }
-  },
-  upload : function (req,res) {
+const file_crud={
+  post_file : function (req,res) {
     let name= 'prueba'
     if (req.file) {      
       console.log(`archivo ${name} subido con exito`);
@@ -44,6 +33,18 @@ const upload_all={
       console.log(`Error al subir el archivo: ${name}`);
       res.status(400).json(`Error al subir el archivo: ${name}`);
     }
+  },
+  getImg : function (req,res) {    
+    const imageDirectory = './public/uploads/img/';
+    fs.readdir(imageDirectory, (err, files) => {
+    if (err) {
+      console.error('Error al leer archivos:', err);
+      res.status(500).send('Error al leer archivos');
+    } else {
+      console.log(files);
+      res.render('img_crud', { images: files });
+    }    
+    });
   }
 }
-module.exports={home,upload_all}
+module.exports={home,file_crud}

@@ -1,0 +1,19 @@
+<%- include("template/headers",{tittle:'CRUD image'}) %>
+<%- include("template/navbar") %>
+
+<div class="row">
+  <div class="col-lg-6">
+    <h1>Imágenes</h1>
+    <ul>
+      <% images.forEach(function(image) { %>
+        <li>
+          <img src="./uploads/img/<%= image %>" alt="<%= image %>">
+        </li>
+      <% }); %>
+    </ul>
+</div>
+
+
+<script src="./js/upload_crud.js"></script>
+<%- include("template/footer") %>
+

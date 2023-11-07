@@ -1,6 +1,11 @@
+document.addEventListener("DOMContentLoaded", function() {
+  
+
+
+});
+
 const btn_image=document.querySelector('#btn_image')
 const uploadInput = document.getElementById('formFileLg')
-
 
 
 btn_image.addEventListener('click', function () {

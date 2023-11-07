@@ -1,14 +1,17 @@
 const express=require('express')
 const router=express.Router()
-const {home,upload_all}= require('../controller/controller')
+const {home,file_crud }= require('../controller/controller')
 const {upload_img,pdfUpload,audioUpload}= require('./multer')
 router.use(express.json())
 
 
 // rutas imagenes
-router.post('/uploadImage', upload_img.single('file'),upload_all.upload_img)
-router.post('/uploadPDF', pdfUpload.single('file'),upload_all.upload)
-router.post('/uploadAudio', audioUpload.single('file'),upload_all.upload)
+//POST
+router.post('/uploadImage', upload_img.single('file'),file_crud.post_file)
+router.post('/uploadPDF', pdfUpload.single('file'),file_crud.post_file)
+router.post('/uploadAudio', audioUpload.single('file'),file_crud.post_file)
+//GET
+router.get('/allImg',file_crud.getImg)
 
 // rutas principales
 router.get('/home',home.home)
