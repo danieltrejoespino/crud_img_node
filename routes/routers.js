@@ -5,10 +5,10 @@ const multer=require('multer')
 router.use(express.json())
 
 router.get('/home',home.home)
-router.get('/error',home.error)
 router.get('/',home.home)
+
 router.get('/img_crud',home.img_page)
-router.get('/base_64',home.base_64)
+router.get('/d-ecrypt',home.ecrypt)
 
 //img routes 
 const storage = multer.diskStorage({

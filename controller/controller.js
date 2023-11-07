@@ -2,15 +2,12 @@
 const home={ 
   home:function (req,res) {
     res.render("index",{titulo:"hola mundo"})
-  },
-  error:function (req,res) {
-    res.render("404",{titulo:"hola nahum"})
-  },
+  }, 
   img_page:function (req,res) {
     res.render("img_crud")
   },
-  base_64:function (req,res) {
-    res.render("base_64")
+  ecrypt:function (req,res) {
+    res.render("d-ecrypt")
   },
 }
 const img_crud={
