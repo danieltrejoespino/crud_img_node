@@ -3,8 +3,24 @@
 
 <div class="row">
   <div class="col-lg-6">
-    <input type="text" id="inp_data">
-    <button id="btn_image" class="btn btn-success mt-3">Cargar imagen</button>
+    <div class="my-auto p-2">
+      <h4>Ingresa un texto</h4>
+    </div>
+
+    <div class="form-floating my-auto p-2">
+      <select class="form-select" id="floatingSelect" aria-label="Floating label select example">        
+        <option selected value="1">Decode</option>
+        <option value="2">Encode</option>        
+      </select>
+      <label for="floatingSelect">Selecciona una opcion</label>
+    </div>
+
+    <div class="form-floating my-auto p-2">
+      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+      <label for="floatingTextarea">Comments</label>
+    </div>
+    
+    <!-- <button id="btn_image" class="btn btn-success mt-3">Cargar imagen</button> -->
   </div>
 </div>
 
