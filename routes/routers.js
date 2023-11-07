@@ -1,20 +1,13 @@
 const express=require('express')
 const router=express.Router()
-const {home,img_crud}= require('../controller/controller')
+const {home,upload_all}= require('../controller/controller')
 const multer=require('multer')
 router.use(express.json())
-
-// rutas principales
-router.get('/home',home.home)
-router.get('/',home.home)
-
-router.get('/img_crud',home.img_page)
-router.get('/d-ecrypt',home.ecrypt)
 
 //img routes 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null,'./public/uploads/'); // Ruta donde se guardarán los archivos
+    cb(null,'./public/uploads/img/'); // Ruta donde se guardarán los archivos
   },
   filename: function (req, file, cb) {
     const sanitizedFileName = file.originalname.replace(/ /g, '_')
@@ -23,18 +16,32 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = function (req, file, cb) {
-  cb(null, true); // Aceptar el archivo
-  // if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-  //   cb(null, true); // Aceptar el archivo
-  // } else {
-  //   cb(null, false); // Rechazar el archivo
-  // }
+  const allowedMimeTypes = ['image/jpeg', 'image/png', 'application/pdf', 'text/plain', 'audio/mpeg'];
+
+  if (allowedMimeTypes.includes(file.mimetype)) {
+    cb(null, true); // Aceptar el archivo
+  } else {
+    cb(null, false); // Rechazar el archivo
+  }
 };
 const upload = multer({ 
   storage: storage,
   fileFilter: fileFilter 
 });
-router.post('/uploadImage', upload.single('imagen'),img_crud.uploadImage)
 
+
+router.post('/uploadImage', upload.single('imagen'),upload_all.upload_img)
+
+
+
+
+
+
+// rutas principales
+router.get('/home',home.home)
+router.get('/',home.home)
+
+router.get('/img_crud',home.img_page)
+router.get('/d-ecrypt',home.ecrypt)
 
 module.exports=router

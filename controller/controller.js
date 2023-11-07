@@ -22,11 +22,8 @@ const home={
     res.render("d-ecrypt",{parametros:objetoParametros})
   },
 }
-const img_crud={
-    home:function (req,res) {
-        res.render("img_crud")
-    },
-    uploadImage:function(req,res){    
+const upload_all={
+  upload_img:function(req,res){    
       let name= 'prueba'
       // let name= req.query.name
       console.log(`url: ${req.url} | Method: ${req.method} | Status:${res.statusCode}`);
@@ -39,4 +36,4 @@ const img_crud={
       }
     }
 }
-module.exports={home,img_crud}
+module.exports={home,upload_all}
