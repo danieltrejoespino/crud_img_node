@@ -3,28 +3,46 @@
 
 <div class="row">
   <div class="col-lg-6">
-    <div class="my-auto p-2">
-      <h4>Ingresa un texto</h4>
+    <div class="my-auto p-2"><h4>Ingresa un texto</h4></div>
+    <div class="form-floating my-auto p-2">
+      <select class="form-select" id="tipo_encrip" aria-label="Floating label select example">                
+        <% parametros.tipo.forEach(function(option) { %>
+          <option value="<%= option.id %>"><%= option.nombre %></option>
+        <% }); %>
+       </select>
+      <label for="tipo_encrip">Selecciona un tipo de encriptacion</label>
+    </div>
+
+
+
+    <div class="form-floating my-auto p-2">
+      <select class="form-select" id="sel_accion" aria-label="Floating label select example">                
+        <% parametros.accion.forEach(function(option) { %>
+          <option value="<%= option.id %>"><%= option.nombre %></option>
+        <% }); %>
+       </select>
+      <label for="sel_accion">Selecciona una accion</label>
     </div>
 
     <div class="form-floating my-auto p-2">
-      <select class="form-select" id="floatingSelect" aria-label="Floating label select example">        
-        <option selected value="1">Decode</option>
-        <option value="2">Encode</option>        
-      </select>
-      <label for="floatingSelect">Selecciona una opcion</label>
-    </div>
-
-    <div class="form-floating my-auto p-2">
-      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+      <textarea class="form-control"  id="txt_texto"></textarea>
       <label for="floatingTextarea">Texto</label>
     </div>
-    
-    <!-- <button id="btn_image" class="btn btn-success mt-3">Cargar imagen</button> -->
+    <div class="form-floating my-auto p-2">
+      <textarea readonly class="form-control" id="txt_result"></textarea>
+      <label for="floatingTextarea">Resultado</label>
+    </div>
+    <div class="form-floating my-auto p-2">
+      <button id="btn_next" class="btn btn-outline-success">Generar</button>    
+    </div>
   </div>
 </div>
+ 
 
-<script src="./js/img_crud.js"></script>
+
+
+<script src="./js/d-ecrypt.js"></script>
+
 <%- include("template/footer") %>
 
 <!-- /home/dtrejo/Documentos/curso/pruebas/crud_img_node/views/base_64.ejs -->

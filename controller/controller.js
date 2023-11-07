@@ -7,7 +7,19 @@ const home={
     res.render("img_crud")
   },
   ecrypt:function (req,res) {
-    res.render("d-ecrypt")
+    const objetoParametros = {
+      accion:[
+        { id: 1, nombre: 'Codificar' },
+        { id: 2, nombre: 'Decodificar' },
+
+      ], 
+      tipo: [
+        { id: 1, nombre: 'Base 64' },
+        { id: 2, nombre: 'prueba' }
+      ],
+    };
+
+    res.render("d-ecrypt",{parametros:objetoParametros})
   },
 }
 const img_crud={
