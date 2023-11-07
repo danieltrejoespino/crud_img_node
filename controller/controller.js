@@ -1,15 +1,17 @@
 
-const test={
- 
-  test:function (req,res) {
-    return res.status(200).send('test')
-  },
+const home={ 
   home:function (req,res) {
     res.render("index",{titulo:"hola mundo"})
   },
   error:function (req,res) {
     res.render("404",{titulo:"hola nahum"})
-  }
+  },
+  img_page:function (req,res) {
+    res.render("img_crud")
+  },
+  base_64:function (req,res) {
+    res.render("base_64")
+  },
 }
 const img_crud={
     home:function (req,res) {
@@ -28,4 +30,4 @@ const img_crud={
       }
     }
 }
-module.exports={test,img_crud}
+module.exports={home,img_crud}

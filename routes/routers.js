@@ -1,12 +1,14 @@
 const express=require('express')
 const router=express.Router()
-const {test,img_crud}= require('../controller/controller')
+const {home,img_crud}= require('../controller/controller')
 const multer=require('multer')
 router.use(express.json())
 
-router.get('/home',test.home)
-router.get('/error',test.error)
-router.get('/',test.home)
+router.get('/home',home.home)
+router.get('/error',home.error)
+router.get('/',home.home)
+router.get('/img_crud',home.img_page)
+router.get('/base_64',home.base_64)
 
 //img routes 
 const storage = multer.diskStorage({
@@ -32,7 +34,6 @@ const upload = multer({
   fileFilter: fileFilter 
 });
 
-router.get('/img_crud',img_crud.home)
 router.post('/uploadImage', upload.single('imagen'),img_crud.uploadImage)
 
 
