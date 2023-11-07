@@ -13,7 +13,7 @@ btn_image.addEventListener('click', function () {
 });
 
 function valida(){
-  const allowedTypes = ['image/png','image/jpeg', 'application/pdf', 'text/plain', 'audio/mpeg'];
+  const allowedTypes = ['image/png','image/jpeg', 'application/pdf', 'text/plain', 'audio/mpeg','audio/mp3'];
   const upload = uploadInput.files[0];
 
   if (!upload) {
@@ -30,11 +30,29 @@ function valida(){
 
 function upload() { 
   btn_image.disabled=true
-  const upload = uploadInput.files[0];   
-  const ruta='/uploadImage'
+  const upload = uploadInput.files[0];  
+  let ruta
+  switch (upload.type) {
+    case 'application/pdf':
+        ruta='/uploadPDF'  
+      break;
+    case 'image/png':
+      ruta='/uploadImage'  
+    break;  
+    case 'audio/mp3':
+      ruta='/uploadAudio'  
+    break;     
+    case 'audio/mpeg':
+      ruta='/uploadAudio'  
+    break;     
+
+    default:
+      ruta='/uploadImage'
+    break;
+  }  
 
   const formData = new FormData();
-  formData.append('imagen', upload);
+  formData.append('file', upload);
     fetch(ruta, {
       method: 'POST',
       body: formData,
@@ -42,15 +60,15 @@ function upload() {
     .then(response => {
       console.log(response);
       if (response.ok) {        
-        show_alert(1,'Imagen subida exitosamente')
+        show_alert(1,'Exito')
       }else{
-        show_alert(2,'Error al subir la imagen')        
+        show_alert(2,'Error')        
       }
     })
     .then((result) => {
       btn_image.disabled=false
     })
     .catch((err) => {
-      console.error('Error al subir la imagen:', error);
+      console.error('Error al subir el archivo:', err);
     });  
 }

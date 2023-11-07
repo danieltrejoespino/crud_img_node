@@ -32,8 +32,18 @@ const upload_all={
         res.json(`imagen ${name} subida con exito`)
       } else {      
         console.log(`Error al subir la imagen ${name}`);
-        res.status(400).json(`Error al subir la imagen o el formato no es compatible ${name}`);
+        res.status(400).json(`Error al subir la imagen: ${name}`);
       }
+  },
+  upload : function (req,res) {
+    let name= 'prueba'
+    if (req.file) {      
+      console.log(`archivo ${name} subido con exito`);
+      res.json(`archivo ${name} subido con exito`)
+    } else {      
+      console.log(`Error al subir el archivo: ${name}`);
+      res.status(400).json(`Error al subir el archivo: ${name}`);
     }
+  }
 }
 module.exports={home,upload_all}
