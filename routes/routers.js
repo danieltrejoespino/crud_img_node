@@ -41,7 +41,7 @@ router.post('/uploadImage', upload.single('imagen'),upload_all.upload_img)
 router.get('/home',home.home)
 router.get('/',home.home)
 
-router.get('/img_crud',home.img_page)
+router.get('/upload_crud',home.upload_page)
 router.get('/d-ecrypt',home.ecrypt)
 
 module.exports=router

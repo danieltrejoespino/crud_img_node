@@ -3,8 +3,8 @@ const home={
   home:function (req,res) {
     res.render("index")
   }, 
-  img_page:function (req,res) {
-    res.render("img_crud")
+  upload_page:function (req,res) {
+    res.render("upload_crud")
   },
   ecrypt:function (req,res) {
     const objetoParametros = {
