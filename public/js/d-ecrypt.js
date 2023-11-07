@@ -22,19 +22,26 @@ function generar() {
   txt_result.select();
   document.execCommand('copy');
   txt_result.blur();
-  btn_next.textContent = '¡Copiado!';
+  btn_next.textContent = '¡Resultado Copiado!';
   setTimeout(() => {
     btn_next.textContent = 'Generar';
   }, 3000);
 }
 
 btn_next.addEventListener('click', function () {   
-  valida()  
-  generar()      
+  if (valida()== true) {
+    generar()
+  } else {
+    show_alert(2,'Agrega un texto para generar')
+  }  
+        
 })
 
 sel_accion.addEventListener('change', function() {
-  valida()  
-  generar() 
+  if (valida()== true) {
+    generar()
+  } else {
+    show_alert(2,'Agrega un texto para generar')
+  }  
 })
  
