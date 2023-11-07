@@ -1,7 +1,7 @@
 
 const home={ 
   home:function (req,res) {
-    res.render("index",{titulo:"hola mundo"})
+    res.render("index")
   }, 
   img_page:function (req,res) {
     res.render("img_crud")

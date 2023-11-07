@@ -4,6 +4,7 @@ const {home,img_crud}= require('../controller/controller')
 const multer=require('multer')
 router.use(express.json())
 
+// rutas principales
 router.get('/home',home.home)
 router.get('/',home.home)
 
@@ -22,18 +23,17 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = function (req, file, cb) {
-  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-    cb(null, true); // Aceptar el archivo
-  } else {
-    cb(null, false); // Rechazar el archivo
-  }
+  cb(null, true); // Aceptar el archivo
+  // if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+  //   cb(null, true); // Aceptar el archivo
+  // } else {
+  //   cb(null, false); // Rechazar el archivo
+  // }
 };
-
 const upload = multer({ 
   storage: storage,
   fileFilter: fileFilter 
 });
-
 router.post('/uploadImage', upload.single('imagen'),img_crud.uploadImage)
 
 

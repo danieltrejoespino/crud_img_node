@@ -23,6 +23,7 @@ function generar() {
   document.execCommand('copy');
   txt_result.blur();
   btn_next.textContent = '¡Resultado Copiado!';
+  // btn_next.innerHTML=`<i class="fa-solid fa-copy fa-beat" style="color: #0dcaf0;"></i>`
   setTimeout(() => {
     btn_next.textContent = 'Generar';
   }, 3000);
