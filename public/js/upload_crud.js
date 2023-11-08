@@ -1,12 +1,32 @@
 document.addEventListener("DOMContentLoaded", function() {
-  
+  getIMG()
 
 
 });
+function getIMG() {
+  fetch('/allImg_1') 
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('No se pudo completar la solicitud.');
+    }
+    return response.json(); // Si esperas una respuesta JSON
+  })
+  .then(data => {
+    console.log(data);
+    data.forEach((element,index) => {
+      const divItem = document.createElement('div');
+      divItem.innerHTML=''
+      
+    });
+  })
+  .catch(error => {
+    console.error('Ocurrió un error:', error);
+  });
 
+}
 const btn_image=document.querySelector('#btn_image')
 const uploadInput = document.getElementById('formFileLg')
-
+const add_img = document.getElementById('add_img');
 
 btn_image.addEventListener('click', function () {
   if (valida()== true) {

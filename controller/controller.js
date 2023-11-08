@@ -56,6 +56,18 @@ const file_crud={
       res.render('img_crud', { images: files });
     }    
     });
+  },
+  getImgJSON : function (req,res) {    
+    const imageDirectory = './public/uploads/img/';
+    fs.readdir(imageDirectory, (err, files) => {
+    if (err) {
+      console.error('Error al leer archivos:', err);
+      res.status(500).send('Error al leer archivos');
+    } else {
+      console.log(files);      
+      res.json(files)
+    }    
+    });
   }
 }
 module.exports={home,file_crud}
