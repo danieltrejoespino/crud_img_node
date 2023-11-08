@@ -5,6 +5,7 @@ const {upload_img,pdfUpload,audioUpload}= require('./multer')
 router.use(express.json())
 
 
+
 // rutas imagenes
 //POST
 router.post('/uploadImage', upload_img.single('file'),file_crud.post_file)

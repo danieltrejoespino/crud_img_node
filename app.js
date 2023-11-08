@@ -9,6 +9,14 @@ app.set('view engine', 'ejs');
 app.set("views", __dirname + "/views");
 app.use(express.static(__dirname+"/public"))
 
+// router.use((req, res, next) => {
+//   res.status(404).render("404");
+// });
+
+app.use((req, res, next) => {
+  res.status(404).render('404');
+});
+
 
 module.exports={
     app,

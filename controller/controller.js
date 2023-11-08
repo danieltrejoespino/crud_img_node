@@ -1,9 +1,20 @@
 const fs = require('fs');
 
-const home={ 
+const home={   
   home:function (req,res) {
+    const objetoParametros = {
+      accion:[
+        { id: 1, nombre: 'Upload', ruta:"/upload_crud"},
+        { id: 1, nombre: 'Carousel', ruta:"/allImg"},
+        { id: 1, nombre: 'Decodificar', ruta:"/d-ecrypt"}
+       ],
+      titulo: [ 'CRUD TOOLS'],           
+    }
     res.render("index")
-  }, 
+  },
+  error_404:function (req,res){
+    res.render("404")
+  },
   upload_page:function (req,res) {
     res.render("upload_crud")
   },

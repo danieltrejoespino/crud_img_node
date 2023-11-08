@@ -3,3 +3,6 @@
   height: 500px; /* Ajusta la altura como desees */
   object-fit: cover; /* Para que las imágenes se ajusten al contenedor */
 }
+._icons{
+  color: #0dcaf0;
+}
