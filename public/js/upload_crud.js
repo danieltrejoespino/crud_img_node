@@ -26,7 +26,7 @@ function getIMG() {
     
       // Construir el código HTML para cada imagen
       html += `<div class="carousel-item ${isActive}">
-                  <img src="./uploads/img/${image}" class="d-block" alt="Imagen ${index + 1}">
+                  <img src="./uploads/img/${image}" class="d-block w-50" style="height: 300px;" alt="Imagen ${index + 1}">
                 </div>`;
     });
     add_img.innerHTML=html
