@@ -1,8 +1,14 @@
+const btn_image=document.querySelector('#btn_image')
+const uploadInput = document.getElementById('formFileLg')
+const add_img = document.getElementById('add_img');
+
 document.addEventListener("DOMContentLoaded", function() {
   getIMG()
 
 
 });
+
+
 function getIMG() {
   fetch('/allImg_1') 
   .then(response => {
@@ -13,20 +19,23 @@ function getIMG() {
   })
   .then(data => {
     console.log(data);
-    data.forEach((element,index) => {
-      const divItem = document.createElement('div');
-      divItem.innerHTML=''
-      
+    let html = '';
+    data.forEach((image, index) => {
+      // Determinar si la imagen actual debe tener la clase 'active'
+      const isActive = index === 0 ? 'active' : '';
+    
+      // Construir el código HTML para cada imagen
+      html += `<div class="carousel-item ${isActive}">
+                  <img src="./uploads/img/${image}" class="d-block" alt="Imagen ${index + 1}">
+                </div>`;
     });
+    add_img.innerHTML=html
   })
   .catch(error => {
     console.error('Ocurrió un error:', error);
   });
 
 }
-const btn_image=document.querySelector('#btn_image')
-const uploadInput = document.getElementById('formFileLg')
-const add_img = document.getElementById('add_img');
 
 btn_image.addEventListener('click', function () {
   if (valida()== true) {
