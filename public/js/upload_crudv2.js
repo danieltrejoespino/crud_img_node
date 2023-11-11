@@ -1,6 +1,8 @@
 const btn_image=document.querySelector('#btn_image')
 const uploadInput = document.getElementById('formFileLg')
 const add_img = document.getElementById('add_img');
+const showImg=document.querySelector('#showImg')
+const dropContainer = document.getElementById("dropcontainer")
 
 document.addEventListener("DOMContentLoaded", function() {
   getIMG()
@@ -22,16 +24,15 @@ function getIMG() {
       // alert('sin datos')
       return false
     }
-    let html = '';
-    data.forEach((image, index) => {
-      
-      const isActive = index === 0 ? 'active' : '';    
-      // Construir el código HTML para cada imagen
-      html += `<div class="carousel-item ${isActive}">
-                  <img src="./uploads/img/${image}" class="d-block w-50" style="height: 300px;" alt="Imagen ${index + 1}">
-                </div>`;
+    let newImg=''
+    data.forEach(element => {        
+        newImg+=`
+            <li class="list-group-item">${element}
+            <img src="./uploads/img/${element}" style="height: 50px; width: 50px;" >        
+            </li>            
+        `
     });
-    add_img.innerHTML=html
+    showImg.innerHTML=newImg
   })
   .catch(error => {
     console.error('Ocurrió un error:', error);
@@ -105,3 +106,25 @@ function upload() {
       console.error('Error al subir el archivo:', err);
     });  
 }
+
+
+
+
+dropContainer.addEventListener("dragover", (e) => {
+    // prevent default to allow drop
+    e.preventDefault()
+  }, false)
+
+  dropContainer.addEventListener("dragenter", () => {
+    dropContainer.classList.add("drag-active")
+  })
+
+  dropContainer.addEventListener("dragleave", () => {
+    dropContainer.classList.remove("drag-active")
+  })
+
+  dropContainer.addEventListener("drop", (e) => {
+    e.preventDefault()
+    dropContainer.classList.remove("drag-active")
+    uploadInput.files = e.dataTransfer.files
+  })

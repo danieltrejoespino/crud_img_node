@@ -4,9 +4,10 @@ const home={
   home:function (req,res) {
     const objetoParametros = {
       accion:[
-        { id: 1, nombre: 'Upload', ruta:"/upload_crud"},
-        { id: 1, nombre: 'Carousel', ruta:"/allImg"},
-        { id: 1, nombre: 'Decodificar', ruta:"/d-ecrypt"}
+        { id: 0, nombre: 'Upload', ruta:"/upload_crud"},
+        { id: 1, nombre: 'Uploadv2', ruta:"/upload_crud_2"},
+        { id: 2, nombre: 'Carousel', ruta:"/allImg"},        
+        { id: 3, nombre: 'Decodificar', ruta:"/d-ecrypt"}
        ],
       titulo: [ 'CRUD TOOLS'],           
     }
@@ -17,6 +18,9 @@ const home={
   },
   upload_page:function (req,res) {
     res.render("upload_crud")
+  },
+  upload_pagev2:function (req,res) {
+    res.render("upload_crudv2")
   },
   ecrypt:function (req,res) {
     const objetoParametros = {
