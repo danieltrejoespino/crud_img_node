@@ -84,6 +84,18 @@ const file_crud={
       res.json(files)
     }    
     });
+  },
+  getAudioJSON : function (req,res) {    
+    const filesDirectory = './public/uploads/audio/';
+    fs.readdir(filesDirectory, (err, files) => {
+    if (err) {
+      console.error('Error al leer archivos:', err);
+      res.status(500).send('Error al leer archivos');
+    } else {
+      console.log(files);      
+      res.json(files)
+    }    
+    });
   }
 }
 module.exports={home,file_crud}

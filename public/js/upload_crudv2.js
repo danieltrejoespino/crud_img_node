@@ -3,14 +3,52 @@ const uploadInput = document.getElementById('formFileLg')
 const add_img = document.getElementById('add_img');
 const showImg=document.querySelector('#showImg')
 const showFile=document.querySelector('#showFile')
+const showAudio=document.querySelector('#showAudio')
 const dropContainer = document.getElementById("dropcontainer")
 
 document.addEventListener("DOMContentLoaded", function() {
   getIMG()
   getFILE()
+  getAUDIO()
 
 
 });
+
+function getAUDIO() {
+
+  fetch('/allAudios') 
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('No se pudo completar la solicitud.');
+    }
+    return response.json(); // Si esperas una respuesta JSON
+  })
+  .then(data => {    
+    if (data.length === 0) {
+      // alert('sin datos')
+      return false
+    }
+    console.log(data);
+    let newData=''
+    data.forEach(element => {   
+      newData+=`
+            <tr>
+              <td colspan="2">${element}</td>
+              <td>                
+                <audio controls>                  
+                  <source src="./uploads/audio/${element}" type="audio/mpeg">
+                </audio>                
+              </td>
+            </tr>            
+        `
+    });
+    showAudio.innerHTML=newData
+  })
+  .catch(error => {
+    console.error('Ocurrió un error:', error);
+  });
+  
+}
 
 function getFILE() {
 
@@ -34,7 +72,7 @@ function getFILE() {
               <td colspan="2">${element}</td>
               <td>
                 <a href="./uploads/files/${element}" download="${element}">
-                <i class=" _icons fa-solid fa-file-arrow-down fa-shake fa-2xl"></i>                
+                <i class=" _icons fa-solid fa-file-arrow-down fa-2xl"></i>                
                 </a>
               </td>
             </tr>            
@@ -75,7 +113,7 @@ function getIMG() {
           </td>
           <td>
             <a href="./uploads/img/${element}" download="${element}">
-             <i class=" _icons fa-solid fa-download fa-shake fa-2xl"></i>            
+             <i class=" _icons fa-solid fa-download fa-2xl"></i>            
             </a>
           </td>
         </tr>            
@@ -88,6 +126,7 @@ function getIMG() {
   });
 
 }
+// ---------------------------------------------------------------------
 
 
 
@@ -171,6 +210,7 @@ function upload() {
         btn_image.disabled=false      
         getIMG()
         getFILE()
+        getAUDIO()
       }else{
         show_alert(2,'Error')        
       }

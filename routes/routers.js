@@ -16,6 +16,7 @@ router.post('/uploadFile', fileUpload.single('file'),file_crud.post_file)
 router.get('/allImg',file_crud.getImg)
 router.get('/allImg_1',file_crud.getImgJSON)
 router.get('/allFiles',file_crud.getFileJSON)
+router.get('/allAudios',file_crud.getAudioJSON)
 
 // rutas principales
 router.get('/home',home.home)
