@@ -12,19 +12,44 @@
       <input type="file" id="formFileLg" required>
     </label>
 
-    <button id="btn_image" class="btn btn-info mt-3">Subir</button>
+    <button id="btn_image" class="btn btn-info mt-3">
+      <i class=" fa-solid fa-upload fa-bounce fa-lg"></i>
+      Subir</button>
     </div>  
   </div>
-  <div class="col-lg-6 text-center">
+  <div class="col-lg-4 text-center">
       <h5 class="py-5">Imagenes en el servidor</h5>    
-      <ul class="list-group" id="showImg">  </ul>
+      <table class="table" >
+        <tr>
+          <th>Nombre</th>
+          <th>Vista</th>
+          <th>Acciones</th>       
+        </tr>
+        <tbody id="showImg"></tbody>
+      </table>
   </div> 
-  <div class="col-lg-6 text-center">
-    <h5 class="py-5">Archivos en el servidor</h5>    
-    <ul class="list-group" id="showFile">  </ul>
-  </div> 
+  <div class="col-lg-4 text-center">
+    <h5 class="py-5">Archivos en el servidor</h5>        
+    <table class="table">
+      <tr>
+        <th colspan="2">Nombre</th>
+        <th >Acciones</th>       
+      </tr>
+      <tbody id="showFile"></tbody>
+    </table>
+  </div>
+  <div class="col-lg-4 text-center">
+    <h5 class="py-5">Musica en el servidor</h5>        
+    <table class="table">
+      <tr>
+        <th colspan="2">Nombre</th>
+        <th >Acciones</th>       
+      </tr>
+      <!-- <tbody id="showFile"></tbody> -->
+    </table>
+  </div>   
+  
 </div>
-
  
 
 <script src="./js/upload_crudv2.js"></script>

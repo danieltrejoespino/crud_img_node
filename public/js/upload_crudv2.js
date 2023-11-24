@@ -28,13 +28,16 @@ function getFILE() {
     }
     console.log(data);
     let newFile=''
-    data.forEach(element => {        
+    data.forEach(element => {   
       newFile+=`
-            <li class="list-group-item">${element}              
-              <a href="./uploads/files/${element}" download="${element}">
-                <button type="button" class="btn btn-outline-info">Descargar Archivo</button>
-              </a>
-            </li>            
+            <tr>
+              <td colspan="2">${element}</td>
+              <td>
+                <a href="./uploads/files/${element}" download="${element}">
+                <i class=" _icons fa-solid fa-file-arrow-down fa-shake fa-2xl"></i>                
+                </a>
+              </td>
+            </tr>            
         `
     });
     showFile.innerHTML=newFile
@@ -63,14 +66,20 @@ function getIMG() {
     }
     let newImg=''
     data.forEach(element => {        
-        newImg+=`
-            <li class="list-group-item">${element}
-              <img src="./uploads/img/${element}" style="height: 100px; width: 100px;" >    
-              <a href="./uploads/img/${element}" download="${element}">
-                <button type="button" class="btn btn-outline-info">Descargar Imagen</button>
-              </a>
-            </li>            
-        `
+ 
+      newImg+=`
+        <tr>
+          <td>${element}</td>
+          <td>
+            <img src="./uploads/img/${element}" style="height: 50px; width: 50px; border-radius: 10px;" >    
+          </td>
+          <td>
+            <a href="./uploads/img/${element}" download="${element}">
+             <i class=" _icons fa-solid fa-download fa-shake fa-2xl"></i>            
+            </a>
+          </td>
+        </tr>            
+    `
     });
     showImg.innerHTML=newImg
   })
@@ -80,11 +89,7 @@ function getIMG() {
 
 }
 
-btn_image.addEventListener('click', function () {
-  if (valida()== true) {
-    upload()
-  }
-});
+
 
 function valida(){
   const allowedTypes = [
@@ -122,6 +127,7 @@ function valida(){
 function upload() { 
   btn_image.disabled=true
   const upload = uploadInput.files[0];  
+  console.log(upload.type);
   let ruta
   switch (upload.type) {
     case 'application/pdf':
@@ -131,6 +137,9 @@ function upload() {
         ruta='/uploadFile'  
       break;
     case 'image/png':
+      ruta='/uploadImage'  
+    break;  
+    case 'image/jpeg':
       ruta='/uploadImage'  
     break;  
     case 'audio/mp3':
@@ -172,7 +181,15 @@ function upload() {
 }
 
 
+btn_image.addEventListener('click', function () {
+  if (valida()== true) {
+    upload()
+  }
+});
 
+showImg.addEventListener('mouseover', function () {
+  console.log('sobre la imagen');
+});
 
 dropContainer.addEventListener("dragover", (e) => {
     // prevent default to allow drop
