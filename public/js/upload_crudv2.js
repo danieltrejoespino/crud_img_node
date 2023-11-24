@@ -2,13 +2,50 @@ const btn_image=document.querySelector('#btn_image')
 const uploadInput = document.getElementById('formFileLg')
 const add_img = document.getElementById('add_img');
 const showImg=document.querySelector('#showImg')
+const showFile=document.querySelector('#showFile')
 const dropContainer = document.getElementById("dropcontainer")
 
 document.addEventListener("DOMContentLoaded", function() {
   getIMG()
+  getFILE()
 
 
 });
+
+function getFILE() {
+
+  fetch('/allFiles') 
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('No se pudo completar la solicitud.');
+    }
+    return response.json(); // Si esperas una respuesta JSON
+  })
+  .then(data => {    
+    if (data.length === 0) {
+      // alert('sin datos')
+      return false
+    }
+    console.log(data);
+    let newFile=''
+    data.forEach(element => {        
+      newFile+=`
+            <li class="list-group-item">${element}              
+              <a href="./uploads/files/${element}" download="${element}">
+                <button type="button" class="btn btn-outline-info">Descargar Archivo</button>
+              </a>
+            </li>            
+        `
+    });
+    showFile.innerHTML=newFile
+  })
+  .catch(error => {
+    console.error('Ocurrió un error:', error);
+  });
+  
+}
+
+// ---------------------------------------------------------------------
 
 
 function getIMG() {
@@ -57,8 +94,15 @@ function valida(){
     'text/plain',
     'audio/mpeg',
     'audio/mp3',
+    'text/csv',
     'application/msword', // Tipo de archivo para documentos de Word (.doc)
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document' // Tipo de archivo para documentos de Word (.docx)
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/vnd.ms-excel',
+    'application/vnd.oasis.opendocument.spreadsheet',
+    'application/x-javascript',
+    'text/html',
+    'application/zip'
+    
   ];
   
   const upload = uploadInput.files[0];
@@ -83,6 +127,9 @@ function upload() {
     case 'application/pdf':
         ruta='/uploadPDF'  
       break;
+    case 'text/csv':
+        ruta='/uploadFile'  
+      break;
     case 'image/png':
       ruta='/uploadImage'  
     break;  
@@ -91,10 +138,13 @@ function upload() {
     break;     
     case 'audio/mpeg':
       ruta='/uploadAudio'  
+    break;
+    case 'application/zip':
+      ruta='/uploadFile'  
     break;     
 
     default:
-      ruta='/uploadPDF'
+      ruta='/uploadFile'
     break;
   }  
 
@@ -111,6 +161,7 @@ function upload() {
         uploadInput.value=''
         btn_image.disabled=false      
         getIMG()
+        getFILE()
       }else{
         show_alert(2,'Error')        
       }

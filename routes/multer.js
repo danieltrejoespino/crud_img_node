@@ -48,9 +48,24 @@ const audioStorage = multer.diskStorage({
 
 const audioUpload = multer({ storage: audioStorage });
 
+//upload audio
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './public/uploads/files/'); // Carpeta de destino para PDFs
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+const fileUpload = multer({ storage: fileStorage });
+
+
+
 module.exports = {
   upload_img,
   pdfUpload,
-  audioUpload
+  audioUpload,
+  fileUpload
 };
 
