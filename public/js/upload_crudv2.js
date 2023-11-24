@@ -28,7 +28,10 @@ function getIMG() {
     data.forEach(element => {        
         newImg+=`
             <li class="list-group-item">${element}
-            <img src="./uploads/img/${element}" style="height: 50px; width: 50px;" >        
+              <img src="./uploads/img/${element}" style="height: 100px; width: 100px;" >    
+              <a href="./uploads/img/${element}" download="${element}">
+                <button type="button" class="btn btn-outline-info">Descargar Imagen</button>
+              </a>
             </li>            
         `
     });
@@ -47,7 +50,17 @@ btn_image.addEventListener('click', function () {
 });
 
 function valida(){
-  const allowedTypes = ['image/png','image/jpeg', 'application/pdf', 'text/plain', 'audio/mpeg','audio/mp3'];
+  const allowedTypes = [
+    'image/png',
+    'image/jpeg',
+    'application/pdf',
+    'text/plain',
+    'audio/mpeg',
+    'audio/mp3',
+    'application/msword', // Tipo de archivo para documentos de Word (.doc)
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document' // Tipo de archivo para documentos de Word (.docx)
+  ];
+  
   const upload = uploadInput.files[0];
 
   if (!upload) {
@@ -81,7 +94,7 @@ function upload() {
     break;     
 
     default:
-      ruta='/uploadImage'
+      ruta='/uploadPDF'
     break;
   }  
 
