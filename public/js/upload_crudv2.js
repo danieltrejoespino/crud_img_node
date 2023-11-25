@@ -169,6 +169,9 @@ function upload() {
   console.log(upload.type);
   let ruta
   switch (upload.type) {
+    case 'application/zip':
+        ruta='/uploadFile'  
+      break;     
     case 'application/pdf':
         ruta='/uploadPDF'  
       break;
@@ -187,9 +190,6 @@ function upload() {
     case 'audio/mpeg':
       ruta='/uploadAudio'  
     break;
-    case 'application/zip':
-      ruta='/uploadFile'  
-    break;     
 
     default:
       ruta='/uploadFile'
