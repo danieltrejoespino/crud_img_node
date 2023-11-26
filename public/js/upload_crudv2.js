@@ -5,13 +5,10 @@ const showImg=document.querySelector('#showImg')
 const showFile=document.querySelector('#showFile')
 const showAudio=document.querySelector('#showAudio')
 const dropContainer = document.getElementById("dropcontainer")
-
 document.addEventListener("DOMContentLoaded", function() {
   getIMG()
   getFILE()
   getAUDIO()
-
-
 });
 
 function getAUDIO() {
@@ -90,6 +87,7 @@ function getFILE() {
 
 
 function getIMG() {
+  showImg.innerHTML=''
   fetch('/allImg_1') 
   .then(response => {
     if (!response.ok) {
@@ -118,6 +116,11 @@ function getIMG() {
           <td>
             <a href="./uploads/img/${element}" download="${element}">
              <i class=" _icons fa-solid fa-download fa-2xl"></i>            
+            </a>            
+          </td>
+          <td>
+            <a data-name="${element}" data-type="img" onclick="delete_img(this,event)">
+              <i class="fa-solid fa-trash fa-2xl"  style="color: #e71313;"></i>             
             </a>
           </td>
         </tr>            
@@ -224,6 +227,54 @@ function upload() {
     });  
 }
 
+function delete_img(data,event) {
+  event.preventDefault();
+  let dataSet = data.dataset.name;
+  let datatype = data.dataset.type;
+
+  let ruta
+  switch (datatype) {
+    
+    case 'img':
+      ruta='/deleteFile'  
+    break;
+
+    default:
+      ruta='/deleteFile'
+    break;
+  } 
+
+fetch(ruta,{
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ 
+    nombre: dataSet,
+    tipo : datatype
+   })
+})
+.then(response => {
+  if (!response.ok) {
+    show_alert(2,'Error')
+    throw new Error('No se pudo completar la solicitud.');
+  }
+  return response.json(); // Si esperas una respuesta JSON
+})
+.then((data ) => {
+  console.log(data );  
+  show_alert(1,`Exito al eliminar el archivo`)
+  getIMG()
+  // getFILE()
+  // getAUDIO()
+}).catch((err) => {
+  show_alert(2,`Error ${err}`)
+  console.error(err)
+});
+
+
+
+}
 
 btn_image.addEventListener('click', function () {
   if (valida()== true) {
@@ -231,9 +282,11 @@ btn_image.addEventListener('click', function () {
   }
 });
 
-showImg.addEventListener('mouseover', function () {
-  console.log('sobre la imagen');
-});
+
+
+// showImg.addEventListener('mouseover', function () {
+//   console.log('sobre la imagen');
+// });
 
 dropContainer.addEventListener("dragover", (e) => {
     // prevent default to allow drop

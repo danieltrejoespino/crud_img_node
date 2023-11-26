@@ -1,6 +1,13 @@
 const express= require('express')
 const app= express()
 const PORT=process.env.PORT || 3007;
+const bodyParser = require('body-parser')
+require('dotenv').config()
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
 const routers= require(__dirname+'/routes/routers')
 app.use('/',routers)

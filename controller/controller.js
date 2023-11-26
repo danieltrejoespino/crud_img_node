@@ -96,6 +96,28 @@ const file_crud={
       res.json(files)
     }    
     });
+  },
+  deleteFile : function (req,res) {    
+    const nombre = req.body.nombre;
+    const tipo = req.body.tipo;
+    let directory =  `./public/uploads/`;
+    if (tipo =='img') {
+      directory += `img/${nombre}`
+    }
+    if (fs.existsSync(directory)) {
+      fs.unlink(directory, (err) => {
+        if (err) {
+          console.error('Error al eliminar el archivo:', err);
+          res.json(`Error al eliminar`)
+        } else {
+          console.log('Archivo eliminado con éxito');
+          res.json('Archivo eliminada con exito.')
+        }
+      })      
+    } else {
+      console.log('El archivo no existe.');
+      res.status(400).json(`Error al eliminar`)
+    }    
   }
 }
 module.exports={home,file_crud}
