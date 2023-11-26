@@ -103,8 +103,12 @@ function getIMG() {
       return false
     }
     let newImg=''
+    let imgClass
     data.forEach(element => {        
- 
+
+      imgClass = element.substring(0, 10)
+      console.log(imgClass);
+
       newImg+=`
         <tr>
           <td>${element}</td>
