@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { Usuario } = require('../model/model')
 
 const home={   
   home:function (req,res) {
@@ -132,7 +133,15 @@ const file_crud={
 
 const crud_mongo={
   test : function (req,res) {
-    console.log(object);
+    async  function pruebas() {
+      try {
+        const arrayUsuariosDB= await Usuario.find()
+        console.log(arrayUsuariosDB);
+      } catch (error) {
+        
+      }
+    }
+    res.json(pruebas())
   }
 
 }
