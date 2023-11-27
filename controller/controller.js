@@ -126,4 +126,20 @@ const file_crud={
     }    
   }
 }
-module.exports={home,file_crud}
+
+
+//mongo
+
+const crud_mongo={
+  test : function (req,res) {
+    console.log(object);
+  }
+
+}
+
+
+module.exports={
+  home,
+  file_crud,
+  crud_mongo
+}

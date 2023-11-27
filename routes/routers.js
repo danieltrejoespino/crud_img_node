@@ -1,6 +1,6 @@
 const express=require('express')
 const router=express.Router()
-const {home,file_crud }= require('../controller/controller')
+const {home,file_crud,crud_mongo }= require('../controller/controller')
 const {upload_img,pdfUpload,audioUpload,fileUpload}= require('./multer')
 router.use(express.json())
 
@@ -18,6 +18,9 @@ router.get('/allImg',file_crud.getImg)
 router.get('/allImg_1',file_crud.getImgJSON)
 router.get('/allFiles',file_crud.getFileJSON)
 router.get('/allAudios',file_crud.getAudioJSON)
+
+//mongo
+router.get('/test_mongo',crud_mongo.test)
 
 // rutas principales
 router.get('/home',home.home)
