@@ -25,6 +25,7 @@ router.get('/',home.home)
 router.get('/upload_crud',home.upload_page)
 router.get('/upload_crudv2',home.upload_pagev2)
 router.get('/d-ecrypt',home.ecrypt)
+router.get('/test',home.test)
 
 module.exports=router
 

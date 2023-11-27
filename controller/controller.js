@@ -37,7 +37,14 @@ const home={
 
     res.render("d-ecrypt",{parametros:objetoParametros})
   },
+  test:function (req,res) {
+    res.render("form_mongo")
+  },
 }
+
+
+
+
 const file_crud={
   post_file : function (req,res) {
     let name= 'prueba'
@@ -102,7 +109,7 @@ const file_crud={
     const tipo = req.body.tipo;
     let directory =  `./public/uploads/`;    
       directory += `img/${nombre}`
-          
+
     if (fs.existsSync(directory)) {
       fs.unlink(directory, (err) => {
         if (err) {
