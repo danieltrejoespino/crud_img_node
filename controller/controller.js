@@ -100,10 +100,9 @@ const file_crud={
   deleteFile : function (req,res) {    
     const nombre = req.body.nombre;
     const tipo = req.body.tipo;
-    let directory =  `./public/uploads/`;
-    if (tipo =='img') {
+    let directory =  `./public/uploads/`;    
       directory += `img/${nombre}`
-    }
+          
     if (fs.existsSync(directory)) {
       fs.unlink(directory, (err) => {
         if (err) {

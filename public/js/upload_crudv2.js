@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function getAUDIO() {
+  showAudio.innerHTML=''
 
   fetch('/allAudios') 
   .then(response => {
@@ -36,6 +37,11 @@ function getAUDIO() {
                   <source src="./uploads/audio/${element}" type="audio/mpeg">
                 </audio>                
               </td>
+              <td>
+                <a data-name="${element}" data-type="audio" onclick="delete_img(this,event)">
+                <i class="fa-solid fa-trash fa-2xl"  style="color: #e71313;"></i>             
+                </a>
+              </td>
             </tr>            
         `
     });
@@ -48,7 +54,7 @@ function getAUDIO() {
 }
 
 function getFILE() {
-
+  showFile.innerHTML=''
   fetch('/allFiles') 
   .then(response => {
     if (!response.ok) {
@@ -70,6 +76,11 @@ function getFILE() {
               <td>
                 <a href="./uploads/files/${element}" download="${element}">
                 <i class=" _icons fa-solid fa-file-arrow-down fa-2xl"></i>                
+                </a>
+              </td>
+              <td>
+                <a data-name="${element}" data-type="files" onclick="delete_img(this,event)">
+                <i class="fa-solid fa-trash fa-2xl"  style="color: #e71313;"></i>             
                 </a>
               </td>
             </tr>            
@@ -265,8 +276,8 @@ fetch(ruta,{
   console.log(data );  
   show_alert(1,`Exito al eliminar el archivo`)
   getIMG()
-  // getFILE()
-  // getAUDIO()
+  getFILE()
+  getAUDIO()
 }).catch((err) => {
   show_alert(2,`Error ${err}`)
   console.error(err)
