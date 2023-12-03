@@ -137,13 +137,19 @@ const crud_mongo={
       try {
         const arrayUsuariosDB= await Usuario.find()
         console.log(arrayUsuariosDB);
+        return arrayUsuariosDB;
       } catch (error) {
         
       }
     }
     res.json(pruebas())
+  },
+  insert : function (req,res) {
+    const body = req.body
+    console.log(body)
+    
+    res.json('hola')
   }
-
 }
 
 

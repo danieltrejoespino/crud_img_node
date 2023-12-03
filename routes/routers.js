@@ -21,6 +21,8 @@ router.get('/allAudios',file_crud.getAudioJSON)
 
 //mongo
 router.get('/test_mongo',crud_mongo.test)
+router.post('/insert_test_mongo',crud_mongo.insert)
+
 
 // rutas principales
 router.get('/home',home.home)
