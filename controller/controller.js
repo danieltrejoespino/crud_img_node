@@ -1,5 +1,17 @@
 const fs = require('fs');
-const { Usuario } = require('../model/model')
+const { Usuario } = require('../model/modelMongo')
+
+const mongoose = require('mongoose');
+const {uri} = require('../db_config/db_mongo')
+
+mongoose.connect(uri)
+.then((result) => {
+  console.log('conectado');
+}).catch((err) => {
+  console.log(err);
+});
+
+
 
 const home={   
   home:function (req,res) {
@@ -129,7 +141,50 @@ const file_crud={
 }
 
 
+
+
+const crud_mongo={
+  test : async function (req,res) {    
+      try {
+        const arrayUsuariosDB= await Usuario.find()
+        console.log(arrayUsuariosDB);        
+        res.json(arrayUsuariosDB)
+      } catch (error) {    
+        res.json(error)    
+      }    
+  },
+
+
+  get : function (req,res) {
+    async  function pruebas() {
+      try {
+        const arrayUsuariosDB= await Usuario.find()
+        console.log(arrayUsuariosDB);
+        return arrayUsuariosDB;
+      } catch (error) {
+        
+      }
+    }
+    res.json(pruebas())
+  },
+
+
+
+
+
+
+
+
+  insert : function (req,res) {
+    const body = req.body
+    console.log(body)
+    
+    res.json(body)
+  }
+}
+
 module.exports={
   home,
-  file_crud
+  file_crud,
+  crud_mongo
  }

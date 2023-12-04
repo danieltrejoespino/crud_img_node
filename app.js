@@ -5,17 +5,8 @@ const app= express()
 const PORT=process.env.PORT || 3007;
 const bodyParser = require('body-parser')
 
-const mongoose = require('mongoose');
-const {uri} = require('./db_config/db_mongo')
 
 
-
-mongoose.connect(uri)
-.then((result) => {
-  console.log('conectado');
-}).catch((err) => {
-  console.log(err);
-});
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
