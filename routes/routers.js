@@ -1,6 +1,7 @@
 const express=require('express')
 const router=express.Router()
-const {home,file_crud,crud_mongo }= require('../controller/controller')
+const {home,file_crud}= require('../controller/controller')
+const {crud_mongo }= require('../controller/controllerMongo')
 const {upload_img,pdfUpload,audioUpload,fileUpload}= require('./multer')
 router.use(express.json())
 

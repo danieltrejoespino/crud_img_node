@@ -129,32 +129,7 @@ const file_crud={
 }
 
 
-//mongo
-
-const crud_mongo={
-  test : function (req,res) {
-    async  function pruebas() {
-      try {
-        const arrayUsuariosDB= await Usuario.find()
-        console.log(arrayUsuariosDB);
-        return arrayUsuariosDB;
-      } catch (error) {
-        
-      }
-    }
-    res.json(pruebas())
-  },
-  insert : function (req,res) {
-    const body = req.body
-    console.log(body)
-    
-    res.json('hola')
-  }
-}
-
-
 module.exports={
   home,
-  file_crud,
-  crud_mongo
-}
+  file_crud
+ }
