@@ -1,6 +1,5 @@
 public/uploads/audio/*
 public/uploads/files/*
-public/uploads/img/*
 public/uploads/pdf/*
 
 .env
